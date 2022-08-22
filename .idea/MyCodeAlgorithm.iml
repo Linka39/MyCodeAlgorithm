@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/target" />
+    <output-test url="file://$MODULE_DIR$/out" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/1.1 课前预习（课件+源码）/基础入门班第一课代码/class01" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/2.1 课前预习（课件+源码）/基础入门班第二课代码/class02" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/3.1 课前预习（课件+源码）/class03" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/4.1 课前预习（课件+源码）/class04" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/5.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/6.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/7.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础/8.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/1.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/2.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/3.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/4.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/5.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/6.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/7.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/中级/8.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/1.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/2.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/3.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/4.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/5.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/6.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/7.1 课前预习（课件+源码）/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/基础提升班/8.1 课前预习（课件+源码）/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
