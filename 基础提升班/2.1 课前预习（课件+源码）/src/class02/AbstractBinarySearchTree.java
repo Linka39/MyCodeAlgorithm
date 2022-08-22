@@ -3,11 +3,7 @@ package class02;
 /**
  * Not implemented by zuochengyun
  *
- * Abstract binary search tree implementation. Its basically fully implemented
- * binary search tree, just template method is provided for creating Node (other
- * trees can have slightly different nodes with more info). This way some code
- * from standart binary search tree can be reused for other kinds of binary
- * trees.
+ * 搜索二叉树的基类，其他搜索二叉树的变种可在其基础上进行扩展
  *
  * @author Ignas Lelys
  * @created Jun 29, 2011
@@ -22,10 +18,7 @@ public class AbstractBinarySearchTree {
 	protected int size;
 
 	/**
-	 * Because this is abstract class and various trees have different
-	 * additional information on different nodes subclasses uses this abstract
-	 * method to create nodes (maybe of class {@link Node} or maybe some
-	 * different node sub class).
+	 *新建二叉树
 	 *
 	 * @param value
 	 *            Value that node will have.
@@ -42,15 +35,14 @@ public class AbstractBinarySearchTree {
 	}
 
 	/**
-	 * Finds a node with concrete value. If it is not found then null is
-	 * returned.
-	 *
+	 * 查找二叉树的元素信息
 	 * @param element
 	 *            Element value.
 	 * @return Node with value provided, or null if not found.
 	 */
 	public Node search(int element) {
 		Node node = root;
+		// 首先看当前节点元素是否为空，不为空时进行后续判断
 		while (node != null && node.value != null && node.value != element) {
 			if (element < node.value) {
 				node = node.left;
@@ -63,8 +55,8 @@ public class AbstractBinarySearchTree {
 
 	/**
 	 * Insert new element to tree.
-	 * 首先在红黑树上找到合适的位置，然后创建新的entry并插入（当然，新插入的节点一定是树的叶子）
-	 *
+	 * 首先在二叉树上找到合适的位置，然后创建新的entry并插入
+	 * （当然，新插入的节点一定是树的叶子）
 	 * @param element
 	 *            Element to insert.
 	 */
@@ -77,7 +69,7 @@ public class AbstractBinarySearchTree {
 		}
 
 		Node insertParentNode = null;
-		// 会对map做一次查找，看是否包含该元素，查找过程类似搜索二叉树
+		// 会对map做一次查找，看是否包含该元素
 		Node searchTempNode = root;
 		while (searchTempNode != null && searchTempNode.value != null) {
 			insertParentNode = searchTempNode;
@@ -102,7 +94,7 @@ public class AbstractBinarySearchTree {
 	}
 
 	/**
-	 * Removes element if node with such value exists.
+	 * 如果是删除元素的话，先找到元素对应的节点，然后进行节点删除
 	 *
 	 * @param element
 	 *            Element value to remove.
@@ -120,8 +112,6 @@ public class AbstractBinarySearchTree {
 	}
 
 	/**
-	 * Delete logic when node is already found.
-	 *
 	 * @param deleteNode
 	 *            Node that needs to be deleted.
 	 *
@@ -129,23 +119,30 @@ public class AbstractBinarySearchTree {
 	 *         delete was not found.
 	 */
 	protected Node delete(Node deleteNode) {
+		// 判断当前节点是否为空
 		if (deleteNode != null) {
 			Node nodeToReturn = null;
 			if (deleteNode != null) {
+				// deleteNode 只有左孩子或右孩子时，进行直接替换
 				if (deleteNode.left == null) {
 					nodeToReturn = transplant(deleteNode, deleteNode.right);
 				} else if (deleteNode.right == null) {
 					nodeToReturn = transplant(deleteNode, deleteNode.left);
 				} else {
+					// deleteNode 左右孩子都不为空时，寻找deleteNode右孩子上的最小节点
 					Node successorNode = getMinimum(deleteNode.right);
+					// 继任节点的父节点不为deleteNode时，要将继任节点的右孩子替换到 继任节点 的位置
 					if (successorNode.parent != deleteNode) {
 						transplant(successorNode, successorNode.right);
+						// deleteNode的右孩子节点变更为successorNode的 (新王上任继承，之前的位置由新王手下继承)
 						successorNode.right = deleteNode.right;
 						successorNode.right.parent = successorNode;
 					}
+					// 继任节点替换deleteNode，deleteNode的左孩子节点变更为successorNode的
 					transplant(deleteNode, successorNode);
 					successorNode.left = deleteNode.left;
 					successorNode.left.parent = successorNode;
+					// 变更后的节点赋值
 					nodeToReturn = successorNode;
 				}
 				size--;
@@ -156,7 +153,7 @@ public class AbstractBinarySearchTree {
 	}
 
 	/**
-	 * Put one node from tree (newNode) to the place of another (nodeToReplace).
+	 * 使用 tree (newNode) 替换 (nodeToReplace).
 	 *
 	 * @param nodeToReplace
 	 *            Node which is replaced by newNode and removed from tree.
@@ -166,13 +163,16 @@ public class AbstractBinarySearchTree {
 	 * @return New replaced node.
 	 */
 	private Node transplant(Node nodeToReplace, Node newNode) {
+		// nodeToReplace 是根节点时，根节点变更
 		if (nodeToReplace.parent == null) {
 			this.root = newNode;
+		// nodeToReplace 是左孩子或右孩子时
 		} else if (nodeToReplace == nodeToReplace.parent.left) {
 			nodeToReplace.parent.left = newNode;
 		} else {
 			nodeToReplace.parent.right = newNode;
 		}
+		// newNode的父节点指认
 		if (newNode != null) {
 			newNode.parent = nodeToReplace.parent;
 		}
@@ -273,6 +273,7 @@ public class AbstractBinarySearchTree {
 		}
 	}
 
+	// 最小节点，最左孩子
 	protected Node getMinimum(Node node) {
 		while (node.left != null) {
 			node = node.left;
@@ -280,6 +281,7 @@ public class AbstractBinarySearchTree {
 		return node;
 	}
 
+	// 最大节点，最右孩子
 	protected Node getMaximum(Node node) {
 		while (node.right != null) {
 			node = node.right;
@@ -287,21 +289,24 @@ public class AbstractBinarySearchTree {
 		return node;
 	}
 
+	// 获取下一个节点
 	protected Node getSuccessor(Node node) {
 		// if there is right branch, then successor is leftmost node of that
-		// subtree
+		// 如果有右孩子的话，获取右孩子的最小节点
 		if (node.right != null) {
 			return getMinimum(node.right);
 		} else { // otherwise it is a lowest ancestor whose left child is also
 			// ancestor of node
 			Node currentNode = node;
 			Node parentNode = node.parent;
+			// 当前节点为父节点的右孩子的话，继续往上窜父节点，直到当前节点为父节点的左孩子
 			while (parentNode != null && currentNode == parentNode.right) {
 				// go up until we find parent that currentNode is not in right
 				// subtree.
 				currentNode = parentNode;
 				parentNode = parentNode.parent;
 			}
+			// 返回父节点
 			return parentNode;
 		}
 	}
@@ -367,10 +372,12 @@ public class AbstractBinarySearchTree {
 			return left == null && right == null;
 		}
 
+		// node的判断要对hashCode和equals重写，改为对value的判断
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
+			// 哈希code加上了基准值
 			result = prime * result + ((value == null) ? 0 : value.hashCode());
 			return result;
 		}
