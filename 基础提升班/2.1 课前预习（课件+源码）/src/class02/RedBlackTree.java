@@ -145,7 +145,7 @@ public class RedBlackTree extends AbstractSelfBalancingBinarySearchTree {
         Node temp = node.right;
         temp.parent = node.parent;
 
-        // node的右孩子接入，前右孩子的左孩子节点（保证大于node）
+        // node的右孩子接入，前右孩子（要上位节点）的左孩子节点（保证大于node）
         node.right = temp.left;
         // 新接入的节点把node设为父节点
         if (node.right != nilNode) {
@@ -303,7 +303,7 @@ public class RedBlackTree extends AbstractSelfBalancingBinarySearchTree {
      * 触发插入节点的调整函数
      */
     private void insertRBFixup(RedBlackNode currentNode) {
-        // 新插入的节点一定为red，如果x和父节点都为红
+        // 新插入的节点一定为red，如果x和父节点都为红进行处理，父节点为黑则忽视
         // Red-Black property, otherwise no fixup needed and loop can terminate
         while (currentNode.parent != root && ((RedBlackNode) currentNode.parent).color == ColorEnum.RED) {
             RedBlackNode parent = (RedBlackNode) currentNode.parent;
@@ -355,6 +355,7 @@ public class RedBlackTree extends AbstractSelfBalancingBinarySearchTree {
 
         }
         // ensure root is black in case it was colored red in fixup
+        // 确保根节点不会被递归过程染红
         ((RedBlackNode) root).color = ColorEnum.BLACK;
     }
 

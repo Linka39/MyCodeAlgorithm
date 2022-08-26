@@ -47,12 +47,12 @@ public class Problem03_BiggestSubBSTInTree {
 		int min = Math.min(X.value, Math.min(lData.min, rData.min));
 		// 以X为头的子树的最大值是：左树最大、右树最大、X的值，三者中最大的
 		int max = Math.max(X.value, Math.max(lData.max, rData.max));
-		// 如果只考虑可能性一和可能性二，以X为头的子树的最大搜索二叉树大小
+		// 如果只考虑可能性一和可能性二（最大子树节点在当前节点下面），以X为头的子树的最大搜索二叉树大小
 		int maxBSTSize = Math.max(lData.maxBSTSize, rData.maxBSTSize);
 		// 如果只考虑可能性一和可能性二，以X为头的子树的最大搜索二叉树头节点
 		Node maxBSTHead = lData.maxBSTSize >= rData.maxBSTSize ? lData.maxBSTHead
 				: rData.maxBSTHead;
-		// 利用收集的信息，可以判断是否存在可能性三
+		// 利用收集的信息，可以判断是否存在可能性三(当前节点为二叉树，为最大子树节点)
 		if (lData.maxBSTHead == X.left && rData.maxBSTHead == X.right
 				&& X.value > lData.max && X.value < rData.min) {
 			maxBSTSize = lData.maxBSTSize + rData.maxBSTSize + 1;
