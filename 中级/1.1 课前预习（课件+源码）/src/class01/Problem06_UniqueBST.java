@@ -1,8 +1,11 @@
-
+package class01;
 
 import java.util.List;
 import java.util.LinkedList;
 
+/**
+ * 给定一个非负整数n，代表二叉树的节点个数。返回能形成多少种不同的二叉树结构
+ */
 public class Problem06_UniqueBST {
 
 	public static class Node {
@@ -15,6 +18,7 @@ public class Problem06_UniqueBST {
 		}
 	}
 
+	// 思路：动态规划    num[i]代表i个节点最多的摆法有多少
 	public static int numTrees(int n) {
 		if (n < 2) {
 			return 1;
