@@ -47,13 +47,14 @@ public class Problem02_AppleMinBags {
 
 	public static void main(String[] args) {
 		int max = Integer.MAX_VALUE;
-		int testTime = 100000000;
-		for (int test = 0; test < testTime; test++) {
-			int apple = (int) (Math.random() * max);
-			if (minBags(apple) != minBagAwesome(apple)) {
-				System.out.println("error");
-			}
-		}
+//		int testTime = 100000000;
+//		for (int test = 0; test < testTime; test++) {
+//			int apple = (int) (Math.random() * max);
+//			if (minBags(apple) != minBagAwesome(apple)) {
+//				System.out.println("error");
+//			}
+//		}
+		System.out.println(minBags(100));
 
 	}
 

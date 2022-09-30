@@ -24,6 +24,8 @@ public class Problem07_NeedParentheses {
 		HashSet<Character> charsSet = new HashSet<>(Arrays.asList(chars));
 		for (int i = 0; i < str.length(); i++) {
 			if (charsSet.contains(str.charAt(i))){
+
+				// 实际代码
 				if (str.charAt(i) == '(') {
 					leftRest++;
 				} else {
@@ -33,13 +35,15 @@ public class Problem07_NeedParentheses {
 						leftRest--;
 					}
 				}
+
+
 			}
 		}
 		return leftRest + needSolveRight;
 	}
 
 	public static void main(String args[]) {
-		System.out.println(needParentheses("313())%#)(22(2#$@$3"));
+		System.out.println(needParentheses("))(()()))("));
 	}
 
 }

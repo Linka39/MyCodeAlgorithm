@@ -1,5 +1,10 @@
+package class02;
 
-
+/**
+ * 将给定的数转换为字符串，原则如下：1对应 a，2对应b，…..26对应z，
+ * 例如12258 可以转换为"abbeh", "aveh", "abyh", "lbeh" and "lyh"，个数为5，
+ * 编写一个函数，给出可以转换的不同字符串的个数。
+ */
 public class Problem03_NumToStringWays {
 
 	public static int convertWays(int num) {
@@ -9,6 +14,8 @@ public class Problem03_NumToStringWays {
 		return process(String.valueOf(num).toCharArray(), 0);
 	}
 
+	// 思路：以索引作为条件动态递归，下标为数组长度时返回，为0时代表错误也返回
+	// 分别在单字符，双字符的限制条件下进行递归
 	public static int process(char[] str, int index) {
 		if (index == str.length) {
 			return 1;
@@ -16,10 +23,12 @@ public class Problem03_NumToStringWays {
 		if (str[index] == '0') {
 			return 0;
 		}
+		// 单字符下有多少字符情况
 		int res = process(str, index + 1);
 		if (index == str.length - 1) {
 			return res;
 		}
+		// 双字符情况下的情况，必须在0 - 27 范围内
 		if (((str[index] - '0') * 10 + str[index + 1] - '0') < 27) {
 			res += process(str, index + 2);
 		}

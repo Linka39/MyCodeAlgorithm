@@ -18,6 +18,26 @@ public class Problem06_UniqueBST {
 		}
 	}
 
+	// 思路：动态规划-递归方式，左子树的可形成的数目乘右子树数目 可以得出
+	private static int getnumTrees(int n) {
+		if (n < 0) {
+			return 0;
+		}
+		if (n == 1 || n == 0) {
+			return 1;
+		}
+		if (n == 2) {
+			return 2;
+		}
+		int sum = 0;
+		for (int i = 0; i < n ; i++) {
+			int L = getnumTrees(i);
+			int R = getnumTrees(n - i - 1);
+			sum = sum + L * R;
+		}
+		return sum;
+	}
+
 	// 思路：动态规划    num[i]代表i个节点最多的摆法有多少
 	public static int numTrees(int n) {
 		if (n < 2) {
