@@ -1,7 +1,14 @@
 package class04;
 
+/**
+ * 动态规划的空间压缩技巧
+ * 给你一个二维数组matrix，其中每个数都是正数，要求从左上角走到右下角。
+ * 每一步只能向右或者向下，沿途经过的数字要累加起来。最后请返回最小的路径和。
+ */
 public class Problem04_MinPathSum {
 
+	// 思路：创建dp[][]数组，记录当前节点的最小路径和，首先预计算出这个矩阵在第一行，第一列的最小路径和
+	// 由于只能向左，向下走。dp[i][j]节点的值为 上一行 和 上一列中的最小值，加上当前节点的值。
 	public static int minPathSum1(int[][] m) {
 		if (m == null || m.length == 0 || m[0] == null || m[0].length == 0) {
 			return 0;
@@ -28,10 +35,10 @@ public class Problem04_MinPathSum {
 		if (m == null || m.length == 0 || m[0] == null || m[0].length == 0) {
 			return 0;
 		}
-		int more = Math.max(m.length, m[0].length); // �����������ϴ���Ǹ�Ϊmore
-		int less = Math.min(m.length, m[0].length); // ������������С���Ǹ�Ϊless
-		boolean rowmore = more == m.length; // �����ǲ��Ǵ��ڵ�������
-		int[] arr = new int[less]; // ��������ĳ��Ƚ�Ϊ�����������е���Сֵ
+		int more = Math.max(m.length, m[0].length); //
+		int less = Math.min(m.length, m[0].length); //
+		boolean rowmore = more == m.length; //
+		int[] arr = new int[less]; //
 		arr[0] = m[0][0];
 		for (int i = 1; i < less; i++) {
 			arr[i] = arr[i - 1] + (rowmore ? m[0][i] : m[i][0]);

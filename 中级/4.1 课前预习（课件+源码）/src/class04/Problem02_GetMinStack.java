@@ -2,11 +2,18 @@ package class04;
 
 import java.util.Stack;
 
+/**
+ * 实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返回栈中最小元素 的操作。 要求：
+ * 1.pop、push、getMin操作的时间复杂度都是O(1)；
+ * 2.设计的栈类型可以 使用现成的栈结构
+ */
 public class Problem02_GetMinStack {
 	public static class MyStack1 {
 		private Stack<Integer> stackData;
 		private Stack<Integer> stackMin;
 
+		// 思路：为了保证getMin为O(1)，新增一个最小值栈，当push时，比较下入栈的值和最小值栈顶的值，保证在 stackMin 栈顶的永远是最小值。
+		// 出栈时看下当前值是否为 stackMin 的最小值，是的话 stackMin pop
 		public MyStack1() {
 			this.stackData = new Stack<Integer>();
 			this.stackMin = new Stack<Integer>();

@@ -3,8 +3,15 @@ package class04;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * 给定一个数组arr，已知其中所有的值都是非负的，将这个数组看作一个容器，
+ * 请返回容器能装多少水 比如，arr = {3，1，2，5，2，4}，根据值画出的直方图就是容器形状，
+ * 该容器可以装下5格水 再比如，arr = {4，5，1，3，2}，该容器可以装下2格
+ */
 public class Problem05_WaterProblem {
 
+	// 思路：暴力求解，求出每个桶的左边最大高度，右边最大高度，求出两者的最大高度max
+	// 并用max - 当前计算的桶高度得出
 	public static int getWater1(int[] arr) {
 		if (arr == null || arr.length < 3) {
 			return 0;
@@ -24,6 +31,8 @@ public class Problem05_WaterProblem {
 		return value;
 	}
 
+	// 思路：采取预计算的方式。求出从左数的依次最大高度数组leftMaxs，从右数的rightMaxs
+	// 遍历水桶，求当前桶最左和最右的值哪个最大，（最大值 - 当前桶高度）得到当前桶的最大高度
 	public static int getWater2(int[] arr) {
 		if (arr == null || arr.length < 3) {
 			return 0;
@@ -105,13 +114,13 @@ public class Problem05_WaterProblem {
 				System.out.println("What a fucking day! fuck that! man!");
 			}
 		}
-		
+
 		HashMap<String,String> map = new HashMap<String,String>();
-		
+
         for(Entry<String,String> entry : map.entrySet()){
             System.out.println(entry.getKey()+" , "+ entry.getValue());
         }
-		
+
 	}
 
 }

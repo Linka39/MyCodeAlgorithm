@@ -48,7 +48,7 @@ public class Code01_KMP {
 		while (i < next.length) {
 			if (ms[i - 1] == ms[cn]) {
 				next[i++] = ++cn;
-				// cn不问0
+				// cn不为0
 			} else if (cn > 0) {
 				cn = next[cn];
 			} else {

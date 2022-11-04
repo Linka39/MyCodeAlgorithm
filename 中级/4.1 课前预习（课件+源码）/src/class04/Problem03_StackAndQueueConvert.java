@@ -4,8 +4,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * 如何仅用队列结构实现栈结构?
+ * 如何仅用栈结构实现队列结构?
+ */
 public class Problem03_StackAndQueueConvert {
 
+	// 栈变队列思路：使用两个栈，
+	// push时正常放入 stackPush 栈里，
+	// poll时从 stackPop 中出栈。如果 stackPop 为空的话，将 stackPush 里的值都出栈到 stackPop 中，进行poll操作。
 	public static class TwoStacksQueue {
 		private Stack<Integer> stackPush;
 		private Stack<Integer> stackPop;
@@ -42,6 +49,9 @@ public class Problem03_StackAndQueueConvert {
 		}
 	}
 
+	// 队列变栈 思路：使用两个队列，
+	// push时正常放入 queue 队列里，
+	// poll时从 queue 中出队并添加到 help 队列里。直到出到最后一个元素为止，此时出队即为pop元素，并交换queue 和 help 两个队列的指针
 	public static class TwoQueuesStack {
 		private Queue<Integer> queue;
 		private Queue<Integer> help;
