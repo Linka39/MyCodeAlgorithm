@@ -1,7 +1,16 @@
 package class08;
 
+/**
+ * 给定一个全是小写字母的字符串str，删除多余字符，使得每种字符只保留一个，并让 最终结果字符串的字典序最小
+ *
+ * 【举例】
+ * str = "acbc"，删掉第一个'c'，得到"abc"，是所有结果字符串中字典序最小的。
+ * str = "dbcacbca"，删掉第一个'b'、第一个'c'、第二个'c'、第二个'a'，得到"dabc"， 是所有结 果字符串中字典序最小的。
+ */
 public class Problem06_RemoveDuplicateLettersLessLexi {
 
+	// 思路：只考虑删除重复出现的字符，使用map计算出每个字符出现的次数，当重复字符仅剩一个时记录指针R，找到 R 为止ascii码值较低的字符形成字符串
+	// 找到后还原，并将该重复字符置为 -1，不再考虑，直到记录指针 R 走到字符串末
 	public static String removeDuplicateLetters(String s) {
 		char[] str = s.toCharArray();
 		// 小写字母ascii码值范围[97~122]，所以用长度为26的数组做次数统计
@@ -30,7 +39,7 @@ public class Problem06_RemoveDuplicateLettersLessLexi {
 				}
 				// 把ascii码最小的字符放到挑选结果中
 				res[index++] = str[pick];
-				// 在上一个的for循环中，str[L..R]范围上每种字符的出现次数都减少了
+				// 在上一个的for循环中，str[L..R]范围上每种字符的出现次数都减少了，需要补偿下
 				// 需要把str[pick + 1..R]上每种字符的出现次数加回来
 				for (int i = pick + 1; i <= R; i++) {
 					if (map[str[i] - 'a'] != -1) { // 只增加以后需要考虑字符的次数

@@ -22,6 +22,7 @@ public class Code02_BubbleSort {
 	}
 
 	public static void swap(int[] arr, int i, int j) {
+		// 位运算都满足结合律和交换律
 		// 按位异或运算， 1^1 0^0 为0，相同为0，不同为1
 		arr[i] = arr[i] ^ arr[j];
 		arr[j] = arr[i] ^ arr[j];
@@ -106,6 +107,8 @@ public class Code02_BubbleSort {
 		printArray(arr);
 		bubbleSort(arr);
 		printArray(arr);
+		int i = Integer.MAX_VALUE;
+		System.out.println(i+2);
 	}
 
 }

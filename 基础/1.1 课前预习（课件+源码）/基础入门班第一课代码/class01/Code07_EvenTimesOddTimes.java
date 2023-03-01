@@ -4,6 +4,11 @@
  * 1）0^N == N N^N == 0
  * 2）异或运算满足交换律和结合率
  * 3）不用额外变量交换两个数
+ *
+ * 负数的运算：
+ * 十进制转二进制，负数，除2得到原码后，原码取反加1得到的补码为 负数的二进制
+ * 负数二进制减 1，取反得到绝对值
+ * https://jingyan.baidu.com/article/a501d80c6b3057ec630f5e21.html
  */
 public class Code07_EvenTimesOddTimes {
 

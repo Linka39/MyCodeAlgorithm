@@ -1,7 +1,15 @@
 package class07;
 
+/**
+ * 把一个数字用中文表示出来。数字范围为 [0, 99999]。
+ * 为了方便输出，使用字母替换相应的中文，万W 千Q 百B 十S 零L。使用数字取代中 文数字注：对于 11 应该表示为 一十一(1S1)，而不是十一(S1)
+ *
+ * 输入描述： 数字 0（包含）到 99999（包含）。
+ * 输出描述： 用字母替换相应的中文，万W 千Q 百B 十S 零L 示例1: 输入 12001 输出 1W2QL1
+ */
 public class Problem01_ChineseExpression {
 
+	// 思路：中文是按照 4 位进行一个拆读的，首先确定好 1到9，99，999，9999 的相关方法
 	public static String num1To9(int num) {
 		if (num < 1 || num > 9) {
 			return "";
@@ -10,6 +18,7 @@ public class Problem01_ChineseExpression {
 		return names[num - 1];
 	}
 
+	// 十位数的读
 	public static String num1To99(int num, boolean hasBai) {
 		if (num < 1 || num > 99) {
 			return "";
@@ -18,6 +27,7 @@ public class Problem01_ChineseExpression {
 			return num1To9(num);
 		}
 		int shi = num / 10;
+		// 按照习惯，如果有百位的话，十位数是1，要读作一十
 		if (shi == 1 && (!hasBai)) {
 			return "十" + num1To9(num % 10);
 		} else {
@@ -25,6 +35,7 @@ public class Problem01_ChineseExpression {
 		}
 	}
 
+	// 百位读
 	public static String num1To999(int num) {
 		if (num < 1 || num > 999) {
 			return "";
@@ -32,6 +43,7 @@ public class Problem01_ChineseExpression {
 		if (num < 100) {
 			return num1To99(num, false);
 		}
+		// 百位读时，需要求出百位数字，看剩下的数字是否 >=10，是的话调用相关的方法
 		String res = num1To9(num / 100) + "百";
 		int rest = num % 100;
 		if (rest == 0) {
@@ -44,6 +56,7 @@ public class Problem01_ChineseExpression {
 		return res;
 	}
 
+	// 千位读
 	public static String num1To9999(int num) {
 		if (num < 1 || num > 9999) {
 			return "";
@@ -51,6 +64,7 @@ public class Problem01_ChineseExpression {
 		if (num < 1000) {
 			return num1To999(num);
 		}
+		// 加上具体的单位，再看余下的数字并调用相关的方法
 		String res = num1To9(num / 1000) + "千";
 		int rest = num % 1000;
 		if (rest == 0) {
@@ -84,6 +98,7 @@ public class Problem01_ChineseExpression {
 		}
 	}
 
+	// 最终将以上方法进行封装
 	public static String getNumChiExp(int num) {
 		if (num == 0) {
 			return "零";

@@ -1,7 +1,11 @@
 package class07;
 
+/**
+ * Problem01_ChineseExpression 的英文版
+ */
 public class Problem01_EnglishExpression {
 
+	// 英文是三个数位一读，首先枚举出 1-19 的读法
 	public static String num1To19(int num) {
 		if (num < 1 || num > 19) {
 			return "";
@@ -13,6 +17,7 @@ public class Problem01_EnglishExpression {
 		return names[num - 1];
 	}
 
+	// 封装 1-99 的读法
 	public static String num1To99(int num) {
 		if (num < 1 || num > 99) {
 			return "";
@@ -20,12 +25,14 @@ public class Problem01_EnglishExpression {
 		if (num < 20) {
 			return num1To19(num);
 		}
+		// 获取最高位，枚举出十位数的读法
 		int high = num / 10;
 		String[] tyNames = { "Twenty ", "Thirty ", "Forty ", "Fifty ",
 				"Sixty ", "Seventy ", "Eighty ", "Ninety " };
 		return tyNames[high - 2] + num1To19(num % 10);
 	}
 
+	// 百位数的读法
 	public static String num1To999(int num) {
 		if (num < 1 || num > 999) {
 			return "";
@@ -37,6 +44,7 @@ public class Problem01_EnglishExpression {
 		return num1To19(high) + "Hundred " + num1To99(num % 100);
 	}
 
+	// 封装以上方法，以三位数作为一股进行读数
 	public static String getNumEngExp(int num) {
 		if (num == 0) {
 			return "Zero";

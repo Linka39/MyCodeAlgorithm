@@ -1,5 +1,8 @@
 package class06;
 
+/**
+ * 找到一棵二叉树中，最大的搜索二叉子树，返回最大搜索二叉子树的节点个数。
+ */
 public class Problem03_BiggestSubBSTInTree {
 
 	public static class Node {
@@ -16,10 +19,13 @@ public class Problem03_BiggestSubBSTInTree {
 		return process(head).maxBSTHead;
 	}
 
+	// 思路：采取树形dp的思想，每个节点都返回一个最大子树节点，最大子树size，当前节点根据左右子树的返回信息进行判断，返回对应节点
+	// 可能性一：最大子树出现在左边。可能性二：最大子树出现在右边。
+	// 可能性三：当前节点的树可形成的就为最大子树。
 	public static class ReturnType {
 		public Node maxBSTHead;
 		public int maxBSTSize;
-		public int min;
+		public int min; // 黑盒中的最小值，用来判断和当前节点是否可形成一颗二叉排序树
 		public int max;
 
 		public ReturnType(Node maxBSTHead, int maxBSTSize, int min, int max) {
@@ -52,7 +58,7 @@ public class Problem03_BiggestSubBSTInTree {
 		// 如果只考虑可能性一和可能性二，以X为头的子树的最大搜索二叉树头节点
 		Node maxBSTHead = lData.maxBSTSize >= rData.maxBSTSize ? lData.maxBSTHead
 				: rData.maxBSTHead;
-		// 利用收集的信息，可以判断是否存在可能性三(当前节点为二叉树，为最大子树节点)
+		// 利用收集的信息，可以判断是否存在可能性三(当前节点为二叉树，为最大子树节点，最大左子树节点为左孩子，最大右子树节点为右孩子)
 		if (lData.maxBSTHead == X.left && rData.maxBSTHead == X.right
 				&& X.value > lData.max && X.value < rData.min) {
 			maxBSTSize = lData.maxBSTSize + rData.maxBSTSize + 1;

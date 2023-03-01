@@ -1,6 +1,5 @@
 package class04;
 
-import com.sun.deploy.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,8 +8,8 @@ import java.util.HashSet;
  * 如果一个字符串为str，把字符串str前面任意的部分挪到后面形成的字符串叫 作str的旋转词。
  * 比如str="12345"，str的旋转词有"12345"、"23451"、 "34512"、"45123"和"51234"。
  * 给定两个字符串a和b，请判断a和b是否互为旋转词。
- * 比如： a="cdab"，b="abcd"，返回true。 a="1ab2"，b="ab12"，
- * 返回false。 a="2ab1"，b="ab12"，返回true
+ * 比如： a="cdab"，b="abcd"，返回true。 a="1ab2"，b="ab12"，返回false。
+ * a="2ab1"，b="ab12"，返回true
  */
 public class Problem07_IsRotation {
 
@@ -73,6 +72,7 @@ public class Problem07_IsRotation {
 		String str2 = "zuochengyun";
 		System.out.println(isRotation(str1, str2));
 
+		// 字符串去重 test
 		String[] strs = ",sdf.com,,sd22f.com,".split(",");
 		HashSet<String> set = new HashSet<>(Arrays.asList(strs));
 		String[] strings = set.stream().toArray(String[]::new);
