@@ -28,11 +28,11 @@ public class TVShow {
         @Override
         public void run() {
             for (int i=0;i<5;i++){
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 tv.play("红楼梦");
             }
         }
@@ -51,17 +51,20 @@ public class TVShow {
     }
     class TV{
         private boolean flag = true;
+        private boolean watchflag = true;
         private final ReentrantLock lock = new ReentrantLock();
-        private final Condition condition = lock.newCondition();
+        private final Condition playCondition = lock.newCondition();
+        private final Condition watchCondition = lock.newCondition();
         private String program;
         public void play(String program){
+            lock.lock();
             try {
-                lock.lock();
                 if (!flag){
-                    condition.await();
+                    playCondition.await();
                 }
                 System.out.println("表演了-"+program);
-                condition.signal();
+                Thread.sleep(1000);
+                playCondition.signal();
                 this.program=program;
                 this.flag=!flag;
             }catch (InterruptedException e){
@@ -73,13 +76,12 @@ public class TVShow {
         public void watch(){
             try {
                 lock.lock();
-                if (flag){
-                    lock.lock();
-                    condition.await();
+                if (!watchflag){
+                    watchCondition.await();
                 }
                 System.out.println("观看了-"+program);
-                condition.signal();
-                this.flag=!flag;
+                watchCondition.signal();
+                this.watchflag=!watchflag;
             }catch (InterruptedException e){
                 e.printStackTrace();
             }finally {

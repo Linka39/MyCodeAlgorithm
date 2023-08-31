@@ -64,7 +64,7 @@ public class ProducerAndConsumer {
                 }
                 number ++;
                 System.out.println(Thread.currentThread().getName() + "执行 + ，结果为 " + number);
-                condition.signal();
+                condition.signalAll();
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -80,7 +80,7 @@ public class ProducerAndConsumer {
                 }
                 number--;
                 System.out.println(Thread.currentThread().getName() + "执行 - ，结果为 " + number);
-                condition.signal();
+                condition.signalAll();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
