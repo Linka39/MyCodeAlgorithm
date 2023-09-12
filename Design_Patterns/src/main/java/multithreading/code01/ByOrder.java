@@ -5,19 +5,20 @@ import java.util.concurrent.locks.LockSupport;
 
 public class ByOrder {
     public static void main(String[] args) throws InterruptedException {
-        printOrder2();
+        printOrder1();
     }
 
     public static void printOrder1() throws InterruptedException {
         Order order = new ByOrder().new Order();
-        Thread t1 = new Thread(() -> order.print(),"t1");
-        Thread t2 = new Thread(() -> order.print(),"t2");
-        Thread t3 = new Thread(() -> order.print(),"t3");
-        t1.start();
-        t2.start();
-        t3.start();
         int k = 4;
         while (k-->0){
+            Thread t1 = new Thread(() -> order.print(),"t1");
+            Thread t2 = new Thread(() -> order.print(),"t2");
+            Thread t3 = new Thread(() -> order.print(),"t3");
+            t1.start();
+            t2.start();
+            t3.start();
+
             t1.join();
             t2.join();
             t3.join();
